@@ -10,7 +10,6 @@ header:
   icon: /assets/images/hackthebox.webp
 categories:
   - hackthebox
-  - infosec
 tags:  
   - osticket
   - mysql
@@ -19,7 +18,7 @@ tags:
   - rules
 ---
 
-![](/assets/images/htb-writeup-delivery/delivery_logo.png)
+![](/assets/images/template_pictures_folder/delivery_logo.png)
 
 Delivery is a quick and fun easy box where we have to create a MatterMost account and validate it by using automatic email accounts created by the OsTicket application. The admins on this platform have very poor security practices and put plaintext credentials in MatterMost. Once we get the initial shell with the creds from MatterMost we'll poke around MySQL and get a root password bcrypt hash. Using a hint left in the MatterMost channel about the password being a variation of PleaseSubscribe!, we'll use hashcat combined with rules to crack the password then get the root shell.
 
@@ -68,21 +67,21 @@ PORT     STATE SERVICE VERSION
 
 The Delivery website is pretty basic, there's a link to a vhost called helpdesk.delivery.htb and a contact us section. We'll add this entry to our local host before proceeding further.
 
-![](/assets/images/htb-writeup-delivery/website1.png)
+![](/assets/images/template_pictures_folder/website1.png)
 
 The contact us section tells us we need an @delivery.htb email address and tells us port 8065 is a MatterMost server. MatterMost is a Slack-like collaboration platform that can be self-hosted.
 
-![](/assets/images/htb-writeup-delivery/website2.png)
+![](/assets/images/template_pictures_folder/website2.png)
 
 Browsing to port 8065 we get the MatterMost login page but we don't have credentials yet
 
-![](/assets/images/htb-writeup-delivery/mm1.png)
+![](/assets/images/template_pictures_folder/mm1.png)
 
 ## Helpdesk
 
 The Helpdesk page uses the OsTicket web application. It allows users to create and view the status of ticket.
 
-![](/assets/images/htb-writeup-delivery/helpdesk3.png)
+![](/assets/images/template_pictures_folder/helpdesk3.png)
 
 We can still open new tickets even if we only have a guest user.
 
